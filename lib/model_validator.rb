@@ -3,6 +3,5 @@
 require_relative "model_validator/version"
 
 module ModelValidator
-  class Error < StandardError; end
-  # Your code goes here...
+  require "model_validator/railtie" if defined?(Rails)
 end
