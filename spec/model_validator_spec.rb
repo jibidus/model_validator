@@ -38,8 +38,8 @@ RSpec.describe ModelValidator do
       it { expect(Rails.logger).to have_received(:info).with("No model skipped") }
       it {
         expect(Rails.logger).to have_received(:error)
-                                  .with('#<DummyModel id: 1, errors: ["Value can\'t be blank"]>')
-                                  .once
+          .with('#<DummyModel id: 1, errors: ["Value can\'t be blank"]>')
+          .once
       }
     end
 
