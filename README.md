@@ -1,10 +1,29 @@
 [![Build Status](https://www.travis-ci.com/jibidus/model_validation.svg?branch=main)](https://www.travis-ci.com/jibidus/model_validation)
 
-# ModelValidator
+# model_validator
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/model_validator`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem can validate database against Active Record validation rules.
+This is useful since error may occur when manipulating such data.
 
-TODO: Delete this and the text above, and describe your gem
+## How this can happen?
+
+- when database is modified without through Active Record api
+- when migrations modify database
+
+## How this gem can prevent such unexpected error?
+
+It is recommended to use this gem during deployment step:
+
+- restore production database in a staging/preprod/non-production environment
+- validate the database
+- add missing migrations in case of violations
+- repeat validation and fix until there is no more violation
+- then, you are ready to deploy your application in production
+
+## Limitations
+
+This gem fetch **all** record in database, and, for each record run the Active Record validation.
+So, because of performances reason, this is only acceptable for tiny databases (thousand of records).
 
 ## Installation
 
@@ -16,25 +35,64 @@ gem 'model_validator'
 
 And then execute:
 
-    $ bundle install
+```bash
+$ bundle install
+```
 
 Or install it yourself as:
 
-    $ gem install model_validator
+```bash
+$ gem install model_validator
+```
 
-## Usage
+## Rake task usage
 
-TODO: Write usage instructions here
+Run `rails db:validate` to validate database of current environment. This is a rake task (see `Rails -T db:validate`)
+
+You can skip some model with `DB_VALIDATE_SKIP` env var (ex: `DB_VALIDATE_SKIP=Model1,Model2`).
+
+## Ruby usage
+
+Validation engine can also be used anywhere in your code:
+
+```ruby
+require "model_validator"
+ModelValidator.validate_all
+```
+
+This will skip `ModelA` and `Model2` for validation:
+
+```ruby
+ModelValidator.validate_all skipped_models: [Model1,Model2]
+```
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `make install` to install dependencies.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Then, run `make test` to run the tests.
+
+Then, run `make lint` to run linters ([rubocop](https://github.com/rubocop-hq/rubocop)).
+
+To install this gem onto your local machine, run `bundle exec rake install`.
+
+### How to release new version?
+
+- Update the version number in `version.rb`
+- run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+## Why not contributing to existing gem?
+
+Many already existing gems may do the same, but none are satisfying:
+
+- [validb](https://github.com/jgeiger/validb): depends on [sidekiq](https://github.com/mperham/sidekiq)
+- [validates_blacklist](https://www.rubydoc.info/gems/validates_blacklist/0.0.1): requires to add configuration in each model 😨
+- [valid_items](https://rubygems.org/gems/valid_items): requires rails eager load 🤔
+- [schema-validations](https://github.com/robworley/schema-validations): I don't understand what it really does 🤪
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/model_validator. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/model_validator/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/jibidus/model_validator. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/model_validator/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
