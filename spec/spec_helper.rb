@@ -14,7 +14,6 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
-
 end
 
 # Allow mocking of Rails.logger without warning

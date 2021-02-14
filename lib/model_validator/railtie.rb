@@ -4,6 +4,7 @@ require "model_validator"
 require "rails"
 
 module ModelValidator
+  # Used to register rake task in Rails application
   class Railtie < Rails::Railtie
     railtie_name :model_validator
 
