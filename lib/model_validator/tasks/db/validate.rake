@@ -7,6 +7,7 @@ namespace :db do
   task validate: :environment do
     Rails.logger.info "Validate database (this will take some time)…"
     skipped_models = (ENV["DB_VALIDATE_SKIP"] || "").split(",")
-    ModelValidator.validate_all skipped_models: skipped_models
+    count = ModelValidator.validate_all(skipped_models: skipped_models)
+    Rails.logger.info "Validation finished with #{count} violation(s)"
   end
 end

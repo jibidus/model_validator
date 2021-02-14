@@ -26,35 +26,45 @@ RSpec.describe ModelValidator do
   end
 
   describe "validate_all" do
+    subject { ModelValidator.validate_all }
+
     context "when one violation" do
       before do
         @db.exec "INSERT INTO dummy_models (id, value) VALUES (1, NULL)"
-        ModelValidator.validate_all
+        subject
       end
+
+      it { is_expected.to eq(1) }
       it { expect(Rails.logger).to have_received(:info).with("No model skipped") }
       it {
         expect(Rails.logger).to have_received(:error)
-          .with('#<DummyModel id: 1, errors: ["Value can\'t be blank"]>')
-          .once
+                                  .with('#<DummyModel id: 1, errors: ["Value can\'t be blank"]>')
+                                  .once
       }
-    end
-
-    context "when one violation on skipped model" do
-      before do
-        @db.exec "INSERT INTO dummy_models (id, value) VALUES (1, NULL)"
-        ModelValidator.validate_all skipped_models: [DummyModel]
-      end
-
-      it { expect(Rails.logger).to have_received(:info).with("Skipped model(s): DummyModel") }
-      it { expect(Rails.logger).not_to have_received(:error) }
     end
 
     context "when no violation" do
       before do
         @db.exec "INSERT INTO dummy_models (value) VALUES ('not null')"
-        ModelValidator.validate_all
+        subject
       end
+      it { is_expected.to eq(0) }
       it { expect(Rails.logger).not_to have_received(:error) }
+    end
+
+    context "when one model is skipped" do
+      subject { ModelValidator.validate_all(skipped_models: [DummyModel]) }
+
+      context "and there is a violation on this model" do
+        before do
+          @db.exec "INSERT INTO dummy_models (id, value) VALUES (1, NULL)"
+          subject
+        end
+
+        it { is_expected.to eq(0) }
+        it { expect(Rails.logger).to have_received(:info).with("Skipped model(s): DummyModel") }
+        it { expect(Rails.logger).not_to have_received(:error) }
+      end
     end
   end
 end

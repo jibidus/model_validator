@@ -12,7 +12,9 @@ module ModelValidator
     else
       Rails.logger.info "Skipped model(s): #{skipped_models.map(&:to_s).join(", ")}"
     end
-    Validator.new(LogHandler.new, skip_models: skipped_models).run
+    handler = LogHandler.new
+    Validator.new(handler, skip_models: skipped_models).run
+    handler.violations_count
   end
 
   # Validation engine, which fetch, and validate each database records
@@ -40,12 +42,19 @@ module ModelValidator
 
   # Validation handler, which logs each violation
   class LogHandler
+    attr_reader :violations_count
+
+    def initialize
+      @violations_count = 0
+    end
+
     def start_model(type)
       Rails.logger.info "Checking #{type}..."
     end
 
     def on_violation(type, record)
       Rails.logger.error "#<#{type} id: #{record.id}, errors: #{record.errors.full_messages}>" unless record.valid?
+      @violations_count += 1
     end
   end
 end
