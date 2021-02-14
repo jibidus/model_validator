@@ -3,7 +3,7 @@
 require "model_validator"
 require "rails"
 
-module MyGem
+module ModelValidator
   class Railtie < Rails::Railtie
     railtie_name :model_validator
 

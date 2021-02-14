@@ -12,3 +12,8 @@
 
 # macOS files
 .DS_Store
+
+# Ignore the default SQLite databases
+/db/*.sqlite3
+/db/*.sqlite3-*
+

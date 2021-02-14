@@ -1,0 +1,6 @@
+encoding: utf8
+host: localhost
+database: model_validator_test
+port: 5432
+adapter: postgresql
+min_messages: warning
