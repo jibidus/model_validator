@@ -8,12 +8,11 @@ Gem::Specification.new do |spec|
   spec.authors = ["Jibidus"]
   spec.email = ["jibidus@gmail.com"]
 
-  spec.summary = "Validate database against Active Record model validations."
-  spec.description = <<~FOO
-    Many reason may make database violate Active Record validation rules
-    (database modification without Active Record, migration…).
-    This raises unexpected error when these records are manipulated by rails.
-  FOO
+  spec.summary = "Validate database against Active Record model validations"
+  spec.description = <<~DESC
+    Find models in database which violate Active Record validation rules.
+    Invalid models may raise unexpected error when updated.
+  DESC
   spec.homepage = "https://github.com/jibidus/model_validation"
   spec.license = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
