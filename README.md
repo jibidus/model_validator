@@ -49,7 +49,7 @@ $ gem install model_validator
 
 Run `rails db:validate` to validate database of current environment. This is a rake task (see `Rails -T db:validate`)
 
-You can skip some model with `DB_VALIDATE_SKIP` env var (ex: `DB_VALIDATE_SKIP=Model1,Model2`).
+You can skip some model with `MODEL_VALIDATOR_SKIPPED_MODELS` env var (ex: `DB_VALIDATE_SKIP=Model1,Model2`).
 
 ## Ruby usage
 
