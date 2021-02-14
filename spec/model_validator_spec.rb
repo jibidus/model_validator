@@ -21,7 +21,9 @@ RSpec.describe ModelValidator do
     allow(Rails.logger).to receive(:error)
   end
 
-  it { expect(ModelValidator::VERSION).not_to be nil }
+  describe ModelValidator::VERSION do
+    it { is_expected.not_to be nil }
+  end
 
   describe "validate_all" do
     context "when one violation" do
