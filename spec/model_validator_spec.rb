@@ -31,7 +31,7 @@ RSpec.describe ModelValidator do
         @db.exec "INSERT INTO dummy_models (id, value) VALUES (1, NULL)"
         ModelValidator.validate_all
       end
-      it { expect(Rails.logger).to have_received(:info).with("No excluded model") }
+      it { expect(Rails.logger).to have_received(:info).with("No model skipped") }
       it {
         expect(Rails.logger).to have_received(:error)
           .with('#<DummyModel id: 1, errors: ["Value can\'t be blank"]>')
@@ -39,13 +39,13 @@ RSpec.describe ModelValidator do
       }
     end
 
-    context "when one violation on excluded model" do
+    context "when one violation on skipped model" do
       before do
         @db.exec "INSERT INTO dummy_models (id, value) VALUES (1, NULL)"
-        ModelValidator.validate_all excluded_models: [DummyModel]
+        ModelValidator.validate_all skipped_models: [DummyModel]
       end
 
-      it { expect(Rails.logger).to have_received(:info).with("Excluded model(s): DummyModel") }
+      it { expect(Rails.logger).to have_received(:info).with("Skipped model(s): DummyModel") }
       it { expect(Rails.logger).not_to have_received(:error) }
     end
 

@@ -6,13 +6,13 @@ require "rails"
 module ModelValidator
   require "model_validator/railtie" if defined?(Rails)
 
-  def self.validate_all(excluded_models: [])
-    if excluded_models.empty?
-      Rails.logger.info "No excluded model"
+  def self.validate_all(skipped_models: [])
+    if skipped_models.empty?
+      Rails.logger.info "No model skipped"
     else
-      Rails.logger.info "Excluded model(s): #{excluded_models.map(&:to_s).join(", ")}"
+      Rails.logger.info "Skipped model(s): #{skipped_models.map(&:to_s).join(", ")}"
     end
-    Validator.new(LogHandler.new, skip_models: excluded_models).run
+    Validator.new(LogHandler.new, skip_models: skipped_models).run
   end
 
   # Validation engine, which fetch, and validate each database records
