@@ -1,3 +1,5 @@
+[![Build Status](https://www.travis-ci.com/jibidus/model_validation.svg?branch=main)](https://www.travis-ci.com/jibidus/model_validation)
+
 # ModelValidator
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/model_validator`. To experiment with that code, run `bin/console` for an interactive prompt.
