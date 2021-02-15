@@ -27,10 +27,10 @@ So, because of performances reason, this is only acceptable for tiny databases (
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application"s Gemfile:
 
 ```ruby
-gem 'model_validator'
+gem "model_validator"
 ```
 
 And then execute:
@@ -78,8 +78,12 @@ To install this gem onto your local machine, run `bundle exec rake install`.
 
 ### How to release new version?
 
-- Update the version number in `version.rb`
-- run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Make sure your are in `main` branch. Then, run:
+```bash
+bundle exec rake release:make[major|minor|patch|x.y.z]
+```
+
+Example for building a new minor release: `bundle exec rake release:make[minor]`
 
 ## Why not contributing to existing gem?
 
@@ -88,7 +92,7 @@ Many already existing gems may do the same, but none are satisfying:
 - [validb](https://github.com/jgeiger/validb): depends on [sidekiq](https://github.com/mperham/sidekiq)
 - [validates_blacklist](https://www.rubydoc.info/gems/validates_blacklist/0.0.1): requires to add configuration in each model 😨
 - [valid_items](https://rubygems.org/gems/valid_items): requires rails eager load 🤔
-- [schema-validations](https://github.com/robworley/schema-validations): I don't understand what it really does 🤪
+- [schema-validations](https://github.com/robworley/schema-validations): I don"t understand what it really does 🤪
 
 ## Contributing
 
@@ -100,4 +104,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the ModelValidator project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/model_validator/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the ModelValidator project"s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/model_validator/blob/master/CODE_OF_CONDUCT.md).
