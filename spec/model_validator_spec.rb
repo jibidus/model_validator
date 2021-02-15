@@ -33,7 +33,8 @@ RSpec.describe ModelValidator do
         subject
       end
 
-      it { is_expected.to eq(1) }
+      it { is_expected.to have_violations(1) }
+      it { is_expected.to have_total(1) }
       it { expect(Rails.logger).to have_received(:info).with("No model skipped") }
       it {
         expect(Rails.logger).to have_received(:error)
@@ -47,7 +48,8 @@ RSpec.describe ModelValidator do
         Database.exec "INSERT INTO dummy_models (value) VALUES ('not null')"
         subject
       end
-      it { is_expected.to eq(0) }
+      it { is_expected.to have_no_violation }
+      it { is_expected.to have_total(1) }
       it { expect(Rails.logger).not_to have_received(:error) }
     end
 
@@ -60,7 +62,8 @@ RSpec.describe ModelValidator do
           subject
         end
 
-        it { is_expected.to eq(0) }
+        it { is_expected.to have_no_violation }
+        it { is_expected.to have_total(0) }
         it { expect(Rails.logger).to have_received(:info).with("Skipped model(s): DummyModel") }
         it { expect(Rails.logger).not_to have_received(:error) }
       end
