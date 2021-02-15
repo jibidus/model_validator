@@ -9,14 +9,13 @@ end
 
 RSpec.describe ModelValidator do
   before(:all) do
-    @db = Database.new
-    @db.connect
-    @db.exec "DROP TABLE IF EXISTS dummy_models"
+    Database.connect
+    Database.exec "DROP TABLE IF EXISTS dummy_models"
   end
 
   before do
-    @db.exec "CREATE TABLE IF NOT EXISTS dummy_models (id integer PRIMARY KEY AUTOINCREMENT, value TEXT)"
-    @db.exec "DELETE FROM dummy_models"
+    Database.exec "CREATE TABLE IF NOT EXISTS dummy_models (id integer PRIMARY KEY AUTOINCREMENT, value TEXT)"
+    Database.exec "DELETE FROM dummy_models"
     allow(Rails.logger).to receive(:info)
     allow(Rails.logger).to receive(:error)
   end
@@ -30,7 +29,7 @@ RSpec.describe ModelValidator do
 
     context "when one violation" do
       before do
-        @db.exec "INSERT INTO dummy_models (id, value) VALUES (1, NULL)"
+        Database.exec "INSERT INTO dummy_models (id, value) VALUES (1, NULL)"
         subject
       end
 
@@ -45,7 +44,7 @@ RSpec.describe ModelValidator do
 
     context "when no violation" do
       before do
-        @db.exec "INSERT INTO dummy_models (value) VALUES ('not null')"
+        Database.exec "INSERT INTO dummy_models (value) VALUES ('not null')"
         subject
       end
       it { is_expected.to eq(0) }
@@ -57,7 +56,7 @@ RSpec.describe ModelValidator do
 
       context "and there is a violation on this model" do
         before do
-          @db.exec "INSERT INTO dummy_models (id, value) VALUES (1, NULL)"
+          Database.exec "INSERT INTO dummy_models (id, value) VALUES (1, NULL)"
           subject
         end
 

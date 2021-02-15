@@ -1,7 +1,0 @@
-adapter: mysql2
-encoding: utf8
-username: mysql_username
-host: localhost
-database: model_validator_test
-min_messages: warning
-local_infile: true
