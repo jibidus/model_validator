@@ -1,7 +1,19 @@
 # frozen_string_literal: true
 
-require "model_validator"
+# Code coverage
+require "simplecov"
+require "coveralls"
+Coveralls.wear!
+SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
+                                                                  SimpleCov::Formatter::HTMLFormatter,
+                                                                  Coveralls::SimpleCov::Formatter
+                                                                ])
+SimpleCov.start do
+  add_group "Libraries", "lib"
+  add_filter "spec"
+end
 
+require "model_validator"
 Dir[File.join(__dir__, "support", "*.rb")].sort.each { |file| require file }
 
 RSpec.configure do |config|

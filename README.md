@@ -70,7 +70,7 @@ ModelValidator.validate_all skipped_models: [Model1,Model2]
 
 After checking out the repo, run `make install` to install dependencies.
 
-Then, run `make test` to run the tests.
+Then, run `make test` to run the tests (test coverage is available in `coverage/index.html`).
 
 Then, run `make lint` to run linters ([rubocop](https://github.com/rubocop-hq/rubocop)).
 
