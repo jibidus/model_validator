@@ -1,7 +1,6 @@
 [![Build Status](https://www.travis-ci.com/jibidus/model_validation.svg?branch=main)](https://www.travis-ci.com/jibidus/model_validation)
 [![Coverage Status](https://coveralls.io/repos/github/jibidus/model_validation/badge.svg?branch=main)](https://coveralls.io/github/jibidus/model_validation?branch=main)
-
-Available in [RubyGems](https://rubygems.org/gems/model_validator).
+[![Gem Version](https://badge.fury.io/rb/model_validator.svg)](https://badge.fury.io/rb/model_validator)
 
 # model_validator
 
