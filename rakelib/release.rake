@@ -27,7 +27,7 @@ namespace :release do
       Release built.
 
       Run following commands to publish version #{release.new_version}:
-       $> git push && git push --tags
+       $> git push
        $> bundle exec rake release
 
       After that, do not forget to report changelog in Github Releases page:
