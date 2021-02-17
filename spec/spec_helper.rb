@@ -14,6 +14,7 @@ SimpleCov.start do
 end
 
 require "model_validator"
+require "factory_bot"
 Dir[File.join(__dir__, "support", "*.rb")].sort.each { |file| require file }
 
 RSpec.configure do |config|
@@ -26,6 +27,8 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.include FactoryBot::Syntax::Methods
 end
 
 # Allow mocking of Rails.logger without warning

@@ -7,6 +7,12 @@ class DummyModel < ActiveRecord::Base
   validates :value, presence: true
 end
 
+FactoryBot.define do
+  factory :dummy_model do
+    value { "my value" }
+  end
+end
+
 RSpec.describe ModelValidator do
   before(:all) do
     Database.connect
@@ -71,9 +77,16 @@ RSpec.describe ModelValidator do
   end
 
   describe ModelValidator::LogHandler do
+    let(:log_handler) { ModelValidator::LogHandler.new }
+
     describe "on_new_class" do
-      before { ModelValidator::LogHandler.new.on_new_class(DummyModel) }
-      it { expect(Rails.logger).to have_received(:info).with("Checking DummyModel…") }
+      context "when 3 models in database" do
+        before do
+          create_list :dummy_model, 3
+          log_handler.on_new_class(DummyModel)
+        end
+        it { expect(Rails.logger).to have_received(:info).with("Checking 3 DummyModel…") }
+      end
     end
   end
 end
