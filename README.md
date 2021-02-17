@@ -1,6 +1,8 @@
 [![Build Status](https://www.travis-ci.com/jibidus/model_validation.svg?branch=main)](https://www.travis-ci.com/jibidus/model_validation)
 [![Coverage Status](https://coveralls.io/repos/github/jibidus/model_validation/badge.svg?branch=main)](https://coveralls.io/github/jibidus/model_validation?branch=main)
 
+Available in [RubyGems](https://rubygems.org/gems/model_validator).
+
 # model_validator
 
 This gem can validate database against Active Record validation rules.
