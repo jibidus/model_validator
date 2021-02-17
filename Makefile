@@ -12,3 +12,6 @@ lint: ## Check file format, smell code, conventions…
 
 lint-fix: ## Fix violations when possible
 	bundle exec rubocop -a
+
+install-locally: ## Install this gem locally
+	bundle exec rake install

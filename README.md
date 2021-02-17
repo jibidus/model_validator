@@ -75,7 +75,7 @@ Then, run `make test` to run the tests (test coverage is available in `coverage/
 
 Then, run `make lint` to run linters ([rubocop](https://github.com/rubocop-hq/rubocop)).
 
-To install this gem onto your local machine, run `bundle exec rake install`.
+To install this gem onto your local machine, run `make install-locally`.
 
 ### How to release new version?
 
