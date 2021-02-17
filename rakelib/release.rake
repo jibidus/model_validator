@@ -30,6 +30,10 @@ namespace :release do
        $> git push
        $> bundle exec rake release
 
+      Then edit tag with changelog:
+       $> git tag v#{release.new_version} -f -a
+       $> git push -f --tags
+
       After that, do not forget to report changelog in Github Releases page:
        https://github.com/jibidus/model_validator/releases
     MSG
