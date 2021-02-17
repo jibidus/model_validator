@@ -13,6 +13,9 @@ end
 FactoryBot.define do
   factory :dummy_model do
     value { "my value" }
+    trait :invalid do
+      value { nil }
+    end
   end
 end
 
@@ -38,7 +41,7 @@ RSpec.describe ModelValidator do
 
     context "when one violation" do
       before do
-        Database.exec "INSERT INTO dummy_models (id, value) VALUES (1, NULL)"
+        build(:dummy_model, id: 1, value: nil).save!(validate: false)
         subject
       end
 
@@ -54,7 +57,7 @@ RSpec.describe ModelValidator do
 
     context "when no violation" do
       before do
-        Database.exec "INSERT INTO dummy_models (value) VALUES ('not null')"
+        create :dummy_model
         subject
       end
       it { is_expected.to have_no_violation }
@@ -67,7 +70,7 @@ RSpec.describe ModelValidator do
 
       context "and there is a violation on this model" do
         before do
-          Database.exec "INSERT INTO dummy_models (id, value) VALUES (1, NULL)"
+          build(:dummy_model, :invalid).save!(validate: false)
           subject
         end
 
