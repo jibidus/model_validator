@@ -57,7 +57,7 @@ module ModelValidator
   # This handler logs validation progression
   class LogHandler
     def on_new_class(model_class)
-      Rails.logger.info "Checking #{model_class}..."
+      Rails.logger.info "Checking #{model_class}…"
     end
 
     def on_violation(model)

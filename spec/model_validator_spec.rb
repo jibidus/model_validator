@@ -69,4 +69,11 @@ RSpec.describe ModelValidator do
       end
     end
   end
+
+  describe ModelValidator::LogHandler do
+    describe "on_new_class" do
+      before { ModelValidator::LogHandler.new.on_new_class(DummyModel) }
+      it { expect(Rails.logger).to have_received(:info).with("Checking DummyModel…") }
+    end
+  end
 end
