@@ -16,6 +16,8 @@ end
 require "model_validator"
 require "factory_bot"
 Dir[File.join(__dir__, "support", "*.rb")].sort.each { |file| require file }
+Dir[File.join(__dir__, "factories", "*.rb")].sort.each { |file| require file }
+Dir[File.join(__dir__, "models", "*.rb")].sort.each { |file| require file }
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
