@@ -93,7 +93,7 @@ Many already existing gems may do the same, but none are satisfying:
 
 - [validb](https://github.com/jgeiger/validb): depends on [sidekiq](https://github.com/mperham/sidekiq)
 - [validates_blacklist](https://www.rubydoc.info/gems/validates_blacklist/0.0.1): requires to add configuration in each model 😨
-- [valid_items](https://rubygems.org/gems/valid_items): requires rails eager load 🤔
+- [valid_items](https://rubygems.org/gems/valid_items): not compliant with rails 6 + cannot find sources to contribute
 - [schema-validations](https://github.com/robworley/schema-validations): I don"t understand what it really does 🤪
 
 ## Contributing
