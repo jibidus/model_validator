@@ -2,7 +2,7 @@
 
 require_relative "lib/model_validator/version"
 
-Gem::Specification.new do |spec|
+Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.name = "model_validator"
   spec.version = ModelValidator::VERSION
   spec.authors = ["Jibidus"]
@@ -30,7 +30,16 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "rails", "~> 6.1"
+  spec.add_runtime_dependency "rails", "~> 6.1"
+
+  spec.add_development_dependency "coveralls"
+  spec.add_development_dependency "factory_bot"
+  spec.add_development_dependency "rake", "~> 13.0"
+  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rubocop", "~> 1.7"
+  spec.add_development_dependency "rubocop-rake", "~> 0.5.1"
+  spec.add_development_dependency "rubocop-rspec", "~> 2.2"
+  spec.add_development_dependency "sqlite3", "~> 1.4"
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html
