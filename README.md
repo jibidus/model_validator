@@ -81,10 +81,10 @@ To install this gem onto your local machine, run `bundle exec rake install`.
 
 Make sure your are in `main` branch. Then, run:
 ```bash
-bundle exec rake release:make[major|minor|patch|x.y.z]
+rake release:make[major|minor|patch|x.y.z]
 ```
 
-Example for building a new minor release: `bundle exec rake release:make[minor]`
+Example for building a new minor release: `rake release:make[minor]`
 
 ## Why not contributing to existing gem?
 
