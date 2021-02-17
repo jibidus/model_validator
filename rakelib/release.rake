@@ -18,20 +18,9 @@ namespace :release do
     puts "---------------------------------------------------------------------"
     puts release.changelog
     puts "---------------------------------------------------------------------"
-
     next if args[:dry_run]
 
     release.git_commit!
-
-    puts <<~MSG
-      Release built.
-
-      Run following commands to publish version #{release.new_version}:
-       $> git push
-       $> bundle exec rake release
-
-      After that, do not forget to report changelog in Github Releases page:
-       https://github.com/jibidus/model_validator/releases
-    MSG
+    puts release.publishing_instructions
   end
 end

@@ -54,6 +54,20 @@ class Release
     `git commit -m ":label: release version #{new_version}"`
   end
 
+  def publishing_instructions
+    <<~MSG
+      New commit created with the release.
+
+      Run following commands to publish version #{new_version}:
+       $> git push
+       $> bundle exec rake release
+
+      Then edit tag with changelog:
+       $> git tag v#{new_version} -f -a
+       $> git push -f --tags
+    MSG
+  end
+
   private
 
   def sub_file_content(file_path, from, to)
