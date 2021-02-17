@@ -1,5 +1,5 @@
-[![Build Status](https://www.travis-ci.com/jibidus/model_validator.svg?branch=main)](https://www.travis-ci.com/jibidus/model_validation)
-[![Coverage Status](https://coveralls.io/repos/github/jibidus/model_validator/badge.svg?branch=main)](https://coveralls.io/github/jibidus/model_validation?branch=main)
+[![Build Status](https://www.travis-ci.com/jibidus/model_validation.svg?branch=main)](https://www.travis-ci.com/jibidus/model_validation)
+[![Coverage Status](https://coveralls.io/repos/github/jibidus/model_validation/badge.svg?branch=main)](https://coveralls.io/github/jibidus/model_validation?branch=main)
 
 # model_validator
 
