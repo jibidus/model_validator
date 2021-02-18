@@ -4,21 +4,14 @@ module ModelValidator
   # Validations summary, with:
   # - violations: number of violations (i.e. number of model which validation failed)
   # - total: total number of validated models
-  class Result
-    attr_accessor :violations, :total
-
-    def initialize(violations: 0, total: 0)
-      @violations = violations
-      @total = total
-    end
-  end
+  Result = Struct.new(:violations, :total)
 
   # This handler computes validation statistics
   class StatsHandler
     attr_reader :result
 
     def initialize
-      @result = Result.new(violations: 0, total: 0)
+      @result = Result.new(0, 0)
     end
 
     def on_new_class(_) end
