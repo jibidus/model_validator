@@ -14,8 +14,6 @@ module ModelValidator
       @result = Result.new(0, 0)
     end
 
-    def on_new_class(_) end
-
     def on_violation(_)
       @result.violations += 1
     end
