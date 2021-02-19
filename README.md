@@ -1,4 +1,4 @@
-[![Build Status](https://www.travis-ci.com/jibidus/model_validation.svg?branch=main)](https://www.travis-ci.com/jibidus/model_validation)
+[![Build Status](https://www.travis-ci.com/jibidus/model_validator.svg?branch=main)](https://www.travis-ci.com/jibidus/model_validator)
 [![Coverage Status](https://coveralls.io/repos/github/jibidus/model_validation/badge.svg?branch=main)](https://coveralls.io/github/jibidus/model_validation?branch=main)
 [![Gem Version](https://badge.fury.io/rb/model_validator.svg)](https://badge.fury.io/rb/model_validator)
 
