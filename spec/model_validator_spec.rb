@@ -8,7 +8,7 @@ RSpec.describe ModelValidator do
     it { is_expected.not_to be nil }
   end
 
-  describe "validate_all" do
+  describe "#validate_all" do
     subject { ModelValidator.validate_all }
 
     context "when one violation" do

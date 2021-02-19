@@ -5,7 +5,7 @@ require "./lib/model_validator"
 RSpec.describe ModelValidator::LogHandler do
   let(:log_handler) { ModelValidator::LogHandler.new }
 
-  describe "on_new_class" do
+  describe "#on_new_class" do
     context "when 3 models in database" do
       before do
         create_list :dummy_model, 3

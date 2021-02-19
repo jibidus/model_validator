@@ -11,8 +11,9 @@ module ModelValidator
     end
 
     def classes_to_validate
-      ActiveRecord::Base.subclasses
-                        .reject { |type| type.to_s.include? "::" } # subclassed classes are not our own models
+      ActiveRecord::Base.descendants
+                        .reject(&:abstract_class)
+                        .select { |type| type.subclasses.empty? }
                         .reject { |type| @skip_models.include? type }
     end
 
