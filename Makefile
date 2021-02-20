@@ -5,6 +5,7 @@ install: ## Install dependencies
 	bundle install
 
 test: ## Test application
+	rm -f db/test.sqlite3
 	bundle exec rspec
 
 lint: ## Check file format, smell code, conventions…
