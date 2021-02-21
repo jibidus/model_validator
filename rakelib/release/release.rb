@@ -8,8 +8,8 @@ AUTHORIZED_BRANCH = "main"
 
 # All commit message prefix to include in changelog
 COMMIT_TYPES = {
-  "tada" => "Feature",
-  "bug" => "Bug fix"
+  "tada" => "Feature(s)",
+  "bug" => "Bug fix(s)"
 }.freeze
 
 # This class can create and publish a new version of the current gem
@@ -45,7 +45,7 @@ class Release
   def changelog
     commits_by_type.map do |type, commits|
       messages_list = commits.map { |commit| "- #{commit.message}\n" }.join
-      "# #{COMMIT_TYPES[type]}\n#{messages_list}"
+      "#{COMMIT_TYPES[type]}\n#{messages_list}"
     end.join("\n")
   end
 
