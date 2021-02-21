@@ -14,7 +14,14 @@ This is useful since error may occur when manipulating such data.
 
 ## How this gem can prevent such unexpected error?
 
-It is recommended to use this gem during deployment step:
+Here is how this gem works:
+
+1. This gem search for all models (all final descendants of `ApplicationRecord`, which are not abstract).
+2. For each model, each record in database is fetch
+3. Active Record validations are played on these records
+4. All violations are logged
+
+Here is the recommended way to use it:
 
 1. restore production database in a staging/preprod/non-production environment
 2. validate the database
