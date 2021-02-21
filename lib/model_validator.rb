@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "rails"
-require "./lib/model_validator/stats_handler"
-require "./lib/model_validator/log_handler"
-require "./lib/model_validator/validator"
+require_relative "model_validator/stats_handler"
+require_relative "model_validator/log_handler"
+require_relative "model_validator/validator"
 
 # Validate models in database according Active Record model validation rules
 module ModelValidator
