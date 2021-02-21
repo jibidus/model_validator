@@ -25,6 +25,7 @@ module ModelValidator
     def classes_to_validate
       raise ApplicationRecordNotFound unless defined?(ApplicationRecord)
 
+      Rails.application.try(:eager_load!) if Rails.env.development?
       ApplicationRecord.descendants
                        .reject(&:abstract_class)
                        .select { |type| type.subclasses.empty? }

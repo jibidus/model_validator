@@ -28,6 +28,33 @@ RSpec.describe ModelValidator::Validator do
       before { hide_const("ApplicationRecord") }
       it { expect { subject }.to raise_error(ModelValidator::ApplicationRecordNotFound) }
     end
+
+    context "when rails env" do
+      let(:rails) { double("Rails") }
+      let(:rails_app) { double("Rails.application").as_null_object }
+      let(:rails_env) { double("Rails.env") }
+      before do
+        stub_const("Rails", rails)
+        allow(rails).to receive(:application) { rails_app }
+        allow(rails).to receive(:env) { rails_env }
+      end
+
+      context "is development" do
+        before do
+          allow(rails_env).to receive(:development?) { true }
+          subject
+        end
+        it { expect(Rails.application).to have_received(:eager_load!) }
+      end
+
+      context "is not development" do
+        before do
+          allow(rails_env).to receive(:development?) { false }
+          subject
+        end
+        it { expect(Rails.application).not_to have_received(:eager_load!) }
+      end
+    end
   end
 
   describe "#run" do
