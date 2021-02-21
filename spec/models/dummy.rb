@@ -2,6 +2,6 @@
 
 require "active_record"
 
-class DummyModel < ActiveRecord::Base
+class DummyModel < ApplicationRecord
   validates :value, presence: true
 end

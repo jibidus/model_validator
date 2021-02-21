@@ -3,6 +3,18 @@
 require "rails"
 
 module ModelValidator
+  # ApplicationRecord is the base class used to loop up for all models to validate.
+  # So this class is mandatory for ModelValidator to work well.
+  class ApplicationRecordNotFound < StandardError
+    def message
+      <<~MSG
+        ApplicationRecord not found.
+        model_validator requires that all models extends a super class ApplicationRecord.
+        This is expected in a rails application since rails 5.0.
+      MSG
+    end
+  end
+
   # Validation engine, which fetch, and validate each database records
   class Validator
     def initialize(handlers: [], skip_models: [])
@@ -11,10 +23,12 @@ module ModelValidator
     end
 
     def classes_to_validate
-      ActiveRecord::Base.descendants
-                        .reject(&:abstract_class)
-                        .select { |type| type.subclasses.empty? }
-                        .reject { |type| @skip_models.include? type }
+      raise ApplicationRecordNotFound unless defined?(ApplicationRecord)
+
+      ApplicationRecord.descendants
+                       .reject(&:abstract_class)
+                       .select { |type| type.subclasses.empty? }
+                       .reject { |type| @skip_models.include? type }
     end
 
     def run

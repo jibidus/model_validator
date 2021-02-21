@@ -30,7 +30,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "rails", ">= 4.0"
+  spec.add_runtime_dependency "rails", ">= 5.0"
 
   spec.add_development_dependency "coveralls"
   spec.add_development_dependency "factory_bot"

@@ -7,16 +7,12 @@ RSpec.describe ModelValidator::Validator do
   describe "#classes_to_validate" do
     subject { ModelValidator::Validator.new.classes_to_validate }
 
-    it "returns classes which extends ActiveRecord::Base" do
+    it "returns classes which extends ApplicationRecord" do
       is_expected.to include(DummyModel).once
     end
 
     it "does not return abstract classes" do
       is_expected.not_to include(ApplicationRecord)
-    end
-
-    it "returns classes which extends ApplicationRecord" do
-      is_expected.to include(Model).once
     end
 
     context "when single table inheritance" do
@@ -26,6 +22,11 @@ RSpec.describe ModelValidator::Validator do
       it "returns child classes" do
         is_expected.to include(ChildClass1, ChildClass2)
       end
+    end
+
+    context "when ApplicationRecord is not defined" do
+      before { hide_const("ApplicationRecord") }
+      it { expect { subject }.to raise_error(ModelValidator::ApplicationRecordNotFound) }
     end
   end
 
