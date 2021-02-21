@@ -16,16 +16,16 @@ This is useful since error may occur when manipulating such data.
 
 It is recommended to use this gem during deployment step:
 
-- restore production database in a staging/preprod/non-production environment
-- validate the database
-- add missing migrations in case of violations
-- repeat validation and fix until there is no more violation
-- then, you are ready to deploy your application in production
+1. restore production database in a staging/preprod/non-production environment
+2. validate the database
+3. add missing migrations in case of violations
+4. repeat validation and fix until there is no more violation
+5. then, you are ready to deploy your application in production
 
 ## Limitations
 
 This gem fetch **all** record in database, and, for each record run the Active Record validation.
-So, because of performances reason, this is only acceptable for tiny databases (thousand of records).
+So, because of performances reason, this may be only acceptable for tiny databases (thousand of records).
 
 ## Installation
 
@@ -94,7 +94,7 @@ Many already existing gems may do the same, but none are satisfying:
 - [validb](https://github.com/jgeiger/validb): depends on [sidekiq](https://github.com/mperham/sidekiq)
 - [validates_blacklist](https://www.rubydoc.info/gems/validates_blacklist/0.0.1): requires to add configuration in each model 😨
 - [valid_items](https://rubygems.org/gems/valid_items): not compliant with rails 6 + cannot find sources to contribute
-- [schema-validations](https://github.com/robworley/schema-validations): I don"t understand what it really does 🤪
+- [schema-validations](https://github.com/robworley/schema-validations): I didn't understand what it really does 🤪
 
 ## Contributing
 
